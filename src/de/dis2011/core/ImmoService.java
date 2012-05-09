@@ -413,6 +413,18 @@ public class ImmoService {
 	}
 	
 	/**
+	 * Speichert ein "detached" Objekt in der DB.
+	 * @param o Objekt, das gepseichert werden soll
+	 */
+	public void persistiere(Object o) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.beginTransaction();
+		session.update(o);
+		session.getTransaction().commit();
+	}
+	
+	/**
 	 * Testdaten erzeugen und in db speichern
 	 */
 	public void addTestData() {
